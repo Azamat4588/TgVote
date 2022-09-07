@@ -1,5 +1,5 @@
 import telebot
-from Config.config import TOKEN_ADMIN, PASSWORD
+
 from telebot import types
 import sqlite3
 
@@ -17,7 +17,7 @@ sql.execute("""CREATE TABLE IF NOT EXISTS admins (
 
 db.commit()
 
-token = TOKEN_ADMIN # your token 
+token = "5768002337:AAH14qTw1Xt5_NR9a-cuUVPoEWf0zbZFJpU" # your token 
 
 bot = telebot.TeleBot(token, parse_mode='HTML')
 
@@ -42,7 +42,7 @@ def send_welcome(message):
         bot.register_next_step_handler(msg, check_password)
 
 def check_password(msg):
-    if msg.text == PASSWORD:
+    if msg.text == "12345678":
         
         sql.execute(f" UPDATE admins SET status = 1 WHERE telegram_id = {msg.chat.id};")
         db.commit()

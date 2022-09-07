@@ -5,14 +5,14 @@ from telebot import types
 import time
 import random
 from selenium_py.sl import Vote, save_user
-from Config.config import TOKEN
+
 
 
 
 
 import json
 
-token = TOKEN # your token
+token = "5768002337:AAH14qTw1Xt5_NR9a-cuUVPoEWf0zbZFJpU" # your token
 bot = telebot.TeleBot(token, parse_mode='HTML')
 
 
