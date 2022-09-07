@@ -10,6 +10,7 @@ from tqdm import tqdm
 import sqlite3
 from datetime import datetime
 from webdriver_manager.chrome import ChromeDriverManager
+import os
 
 db = sqlite3.connect('server.db', check_same_thread=False)
 sql = db.cursor()
@@ -19,6 +20,7 @@ sql = db.cursor()
 url = "https://ochiqbudjet.uz/boards/6/163564"
 useragent = UserAgent()
 options = webdriver.ChromeOptions()
+options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 options.add_argument(f'user-agent={useragent.random}')
 options.headless = True
 # options.add_argument("--window-size=1920,1080")
@@ -29,8 +31,9 @@ options.add_argument('--ignore-certificate-errors')
 # options.add_argument("--proxy-bypass-list=*")
 # options.add_argument("--start-maximized")
 # options.add_argument('--disable-gpu')
-# options.add_argument('--disable-dev-shm-usage')
-# options.add_argument('--no-sandbox')
+options.add_argument("--headless")
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--no-sandbox')
 options.add_argument('--ignore-ssl-errors')
 
 sql.execute("""CREATE TABLE IF NOT EXISTS users (
@@ -74,7 +77,7 @@ class Vote:
         
         
 
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 
         self.driver = driver
         self.bot = bot
