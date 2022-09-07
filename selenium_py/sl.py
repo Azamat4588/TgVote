@@ -16,7 +16,7 @@ sql = db.cursor()
 
 
 
-url = "https://openbudget.uz/boards/6/156480"
+url = "https://ochiqbudjet.uz/boards/6/163564"
 useragent = UserAgent()
 options = webdriver.ChromeOptions()
 options.add_argument(f'user-agent={useragent.random}')
